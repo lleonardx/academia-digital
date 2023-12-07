@@ -11,29 +11,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "tb_alunos")
-@JsonIgnoreProperties({"hibernateLazeInitializer", "handler"})
+@Data // getter e setter
+@NoArgsConstructor // construtor vazio
+@AllArgsConstructor // construtor
+@Entity // cria a tabela no bd
+@Table(name = "tb_alunos") // mudar o nome da tabela
+@JsonIgnoreProperties({"hibernateLazeInitializer", "handler"}) // forma lazy
 public class Aluno {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id //id automatica
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // chave primaria
   private Long id;
 
   private String nome;
 
-  @Column(unique = true)
+  @Column(unique = true) // transforma o atributo em coluna unica, não podendo repetir os dados
   private String cpf;
 
   private String bairro;
 
   private LocalDate dataDeNascimento;
 
-  @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
-  @JsonIgnore
+  // Um aluno para varias avaliações
+  @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY) // relacionamento de tabelas - fectch é referente ao carregamento da lista
+  @JsonIgnore // ignora erros do Json
   private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
 
 }

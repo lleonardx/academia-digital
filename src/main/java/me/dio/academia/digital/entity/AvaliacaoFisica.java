@@ -20,8 +20,9 @@ public class AvaliacaoFisica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "aluno_id")
+    // varias avaliacoes para um aluno
+    @ManyToOne(cascade = CascadeType.ALL) // cascade o que acontecer em avaliacao, vai repercutir em aluno
+    @JoinColumn(name = "aluno_id") //
     private Aluno aluno;
 
     private LocalDateTime dataDaAvaliacao = LocalDateTime.now();

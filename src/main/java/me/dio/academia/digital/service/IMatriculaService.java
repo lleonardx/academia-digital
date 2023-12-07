@@ -26,6 +26,8 @@ public interface IMatriculaService {
    */
   List<Matricula> getAll();
 
+  List<Matricula> getAll(String bairro);
+
   /**
    * Deleta uma Matrícula específica.
    * @param id - id da Matrícula que será removida.
