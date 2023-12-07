@@ -1,5 +1,6 @@
 package me.dio.academia.digital.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,22 +13,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_avaliacoes")
+@JsonIgnoreProperties({"hibernateLazeInitializer", "handler"})
 public class AvaliacaoFisica {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "aluno_id")
-  private Aluno aluno;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
 
-  private LocalDateTime dataDaAvaliacao = LocalDateTime.now();
+    private LocalDateTime dataDaAvaliacao = LocalDateTime.now();
 
-  @Column(name = "peso_atual")
-  private double peso;
+    @Column(name = "peso_atual")
+    private double peso;
 
-  @Column(name = "altura_atual")
-  private double altura;
+    @Column(name = "altura_atual")
+    private double altura;
 
 }
